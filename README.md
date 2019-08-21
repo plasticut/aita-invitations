@@ -7,6 +7,7 @@ $ docker/start_mongodb.sh
 ```
 Create mocks:
 ```
+# if an error occurs, wait until the cluster is initialized
 $ npm run mockdb
 ```
 Start dev server:
