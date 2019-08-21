@@ -1,0 +1,19 @@
+host: localhost
+port: 3000
+# instances: number of app instance to be launched
+#  0 to spread the app across all CPUs
+# -1 to spread the app across all CPUs - 1
+#  number to spread the app across number CPUs
+instances: 1
+mongoose:
+  uri: mongodb://localhost:27017/aita_invitations
+  debug: false
+  options:
+    autoIndex: true
+    keepAlive: 1
+    poolSize: 5
+    connectTimeoutMS: 0
+    socketTimeoutMS: 0
+    bufferMaxEntries: 0
+gracefulShutdown:
+  timeout: 1000

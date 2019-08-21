@@ -1,0 +1,14 @@
+version: "2"
+
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile_prod
+    ports:
+      - 3000:3000
+    environment:
+      NODE_ENV: production
+      MONGODB_URI: mongodb://mongo1:27017,mongo2:27017,mongo3:27017/aita_invitations?replicaSet=rs0
+      INSTANCES: 0
+    command: pm2-docker /src/pm2.config.js --only aita_invitations_main

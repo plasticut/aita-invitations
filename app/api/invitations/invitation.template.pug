@@ -1,0 +1,22 @@
+html
+  head
+    title Invitation for #{traveler.fullName}
+  body
+    dl
+      dd Passenger name
+      dt= traveler.fullName
+
+    dl
+      dd Destination
+      dt= event.address
+
+    dl
+      dd Date
+      dt= moment(event.startDate).format('L')
+
+    dl
+      dd Time
+      dt= moment(event.startDate).format('LT')
+
+    .barcode
+      img(src="data:image/png;base64," + barcodeImageURI)

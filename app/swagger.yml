@@ -1,0 +1,278 @@
+swagger: "2.0"
+# openapi: "3.0"
+
+info:
+  description: App In the Air invitations sample server
+  version: 1.0.0
+  title: AITA Invitations
+
+# servers:
+#   - url: http://localhost:3000
+
+basePath: /api/v1
+
+schemes:
+- http
+
+paths:
+  /events:
+    get:
+      summary: Returns events list
+      operationId: getEvents
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Events list
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Invitation"
+
+  /travelers:
+    get:
+      summary: Returns travelers list
+      operationId: getTravelers
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Travelers list
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Traveler"
+
+  /invitations:
+    get:
+      summary: Returns invitations list
+      operationId: listInvitations
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Invitations list
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Invitation"
+
+    post:
+      summary: Create a new invitation
+      operationId: createInvitation
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: Invitation object that needs to be added to the store
+        required: true
+        schema:
+          $ref: "#/definitions/CreateInvitation"
+      responses:
+        201:
+          description: Created invitation
+          schema:
+            $ref: "#/definitions/Invitation"
+        400:
+          description: Invalid input
+          schema:
+            $ref: "#/responses/BadRequest"
+
+  /invitations/{invitationId}/activate:
+    post:
+      summary: Activate invitation
+      operationId: activateInvitation
+      produces:
+      - application/json
+      parameters:
+      - name: invitationId
+        in: path
+        description: Invitation object id
+        required: true
+        type: string
+        format: ObjectId
+      responses:
+        200:
+          description: Activated invitation
+          schema:
+            $ref: "#/definitions/Invitation"
+        400:
+          description: Invalid input
+          schema:
+            $ref: "#/responses/BadRequest"
+        404:
+          description: Invitation not found
+          schema:
+            $ref: "#/responses/NotFound"
+
+  /invitations/{invitationId}:
+    get:
+      summary: Find invitation by id
+      operationId: getInvitation
+      produces:
+      - application/json
+      parameters:
+      - name: invitationId
+        in: path
+        description: Invitation object id
+        required: true
+        type: string
+        format: ObjectId
+      responses:
+        200:
+          description: Invitation
+          schema:
+            $ref: "#/definitions/Invitation"
+        400:
+          description: Invalid input
+          schema:
+            $ref: "#/responses/BadRequest"
+        404:
+          description: Invitation not found
+          schema:
+            $ref: "#/responses/NotFound"
+
+  /invitations/{invitationId}/image:
+    get:
+      summary: Generate invitation image file
+      operationId: generateInvitationImage
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      - image/png
+      - image/jpeg
+      parameters:
+      - name: invitationId
+        in: path
+        description: Invitation object id
+        required: true
+        type: string
+        format: ObjectId
+      - name: imageType
+        in: query
+        description: Output image format
+        type: string
+        enum:
+        - png
+        - jpeg
+      responses:
+        200:
+          description: Invitation image in PNG/JPEG format
+          schema:
+            type: any
+        400:
+          description: Invalid input
+          schema:
+            $ref: "#/responses/BadRequest"
+        404:
+          description: Invitation not found
+          schema:
+            $ref: "#/responses/NotFound"
+
+responses:
+  NotFound:
+    description: The specified resource was not found
+    schema:
+      $ref: "#/definitions/Error"
+  BadRequest:
+    description: Bad request
+    schema:
+      $ref: "#/definitions/Error"
+
+definitions:
+  Error:
+    type: object
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+    required:
+      - code
+      - message
+
+  CreateEvent:
+    type: object
+    properties:
+      name:
+        type: string
+      address:
+        type: string
+      startDate:
+        type: string
+        format: date-time
+    required:
+      - name
+      - address
+      - startDate
+
+  Event:
+    type: object
+    properties:
+      id:
+        # type: string
+        # format: ObjectId
+        type: any
+      name:
+        type: string
+      address:
+        type: string
+      startDate:
+        type: string
+        format: date-time
+
+  CreateTraveler:
+    type: object
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+    required:
+      - firstName
+      - lastName
+
+  Traveler:
+    type: object
+    properties:
+      id:
+        # type: string
+        # format: ObjectId
+        type: any
+      firstName:
+        type: string
+      lastName:
+        type: string
+
+  CreateInvitation:
+    type: object
+    properties:
+      travelerId:
+        type: string
+        format: ObjectId
+      eventId:
+        type: string
+        format: ObjectId
+    required:
+      - travelerId
+      - eventId
+
+  Invitation:
+    type: object
+    properties:
+      id:
+        # type: string
+        # format: ObjectId
+        type: any
+      traveler:
+        type: any
+      event:
+        type: any
+      activated:
+        type: boolean
+      sended:
+        type: boolean

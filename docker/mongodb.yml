@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  mongo1:
+    image: mongo:4.0
+    hostname: mongo1
+    container_name: mongo1
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: aita_invitations
+    ports:
+      - 27017:27017
+    command: "--bind_ip_all --replSet rs0"
+
+  mongo2:
+    image: mongo:4.0
+    hostname: mongo2
+    container_name: mongo2
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: aita_invitations
+    ports:
+      - 27018:27017
+    command: "--bind_ip_all --replSet rs0"
+
+  mongo3:
+    image: mongo:4.0
+    hostname: mongo3
+    container_name: mongo3
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: aita_invitations
+    ports:
+      - 27019:27017
+    command: "--bind_ip_all --replSet rs0"

@@ -1,0 +1,55 @@
+{
+  "extends": "google",
+  "env": {
+    "browser": false,
+    "node": true,
+    "es6": true,
+    "mocha": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "consistent-return": "off",
+    "func-names": "off",
+    "max-len": "off",
+    "prefer-destructuring": "off",
+    "eqeqeq": "off",
+    "require-jsdoc": "off",
+    "no-useless-escape": "off",
+    "no-undef": 1,
+    "no-plusplus": "off",
+    "no-bitwise": "off",
+    "no-unused-vars": "off",
+    "no-shadow": "off",
+    "no-underscore-dangle": "off",
+    "no-tabs": "warn",
+    "new-cap": "warn",
+    "no-use-before-define": "off",
+    "prefer-promise-reject-errors": "warn",
+    "camelcase": "warn",
+    "prefer-rest-params": "warn",
+    "no-multi-assign": "warn",
+    "no-param-reassign": "off",
+    "global-require": "warn",
+    "prefer-const": "warn",
+    "no-await-in-loop": "off",
+    "no-extend-native": "warn",
+    "no-nested-ternary": "warn",
+    "guard-for-in": "warn",
+    "no-restricted-syntax": "off",
+    "no-prototype-builtins": "off",
+    "default-case": "off",
+    "no-case-declarations": "off",
+    "import/no-unresolved": "off",
+    "import/no-dynamic-require": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/prefer-default-export": "off",
+    "import/named": "off",
+    "comma-dangle": "off",
+    "operator-linebreak": ["error", "after"]
+  }
+}

@@ -1,0 +1,3 @@
+node_modules/*
+coverage/*
+mongodb/docker-entrypoint-initdb.d/*

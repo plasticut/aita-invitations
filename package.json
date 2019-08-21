@@ -1,0 +1,46 @@
+{
+  "name": "aita_invitations",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app/server | ./node_modules/.bin/bunyan",
+    "test": "NODE_ENV=test tap 'app/**/*.test.js' -R spec",
+    "lint": "eslint .",
+    "mockdb": "node bin/mockdb"
+  },
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": "10.16.3",
+    "npm": "6.10.3"
+  },
+  "dependencies": {
+    "@koa/cors": "3.0.0",
+    "bunyan": "1.8.12",
+    "bwip-js": "1.7.3",
+    "config": "3.2.2",
+    "js-yaml": "3.13.1",
+    "koa": "2.8.1",
+    "koa-bodyparser": "4.2.1",
+    "koa-helmet": "5.1.0",
+    "koa-logger": "3.2.1",
+    "koa-pug": "4.0.2",
+    "koa-router": "7.4.0",
+    "lodash": "4.17.15",
+    "mongoose": "5.6.9",
+    "pug": "2.0.4",
+    "puppeteer": "1.19.0",
+    "socket.io": "2.2.0",
+    "swagger2": "1.0.5",
+    "swagger2-koa": "1.0.4",
+    "uglify-js": "3.6.0"
+  },
+  "devDependencies": {
+    "eslint": "6.2.0",
+    "eslint-config-google": "0.13.0",
+    "factory-girl": "5.0.4",
+    "supertest": "4.0.2",
+    "tap": "14.6.1"
+  }
+}

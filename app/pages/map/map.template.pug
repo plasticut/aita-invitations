@@ -1,0 +1,15 @@
+extends /layout.pug
+
+block scripts
+  script(src="/socket.io/socket.io.js")
+  script !{script}
+
+block content
+  h1 Flights map
+  h2#name= name
+  dl
+    dd Flight distance
+    dt#distance= distance
+  dl
+    dd Flight time
+    dt#hours= hours
